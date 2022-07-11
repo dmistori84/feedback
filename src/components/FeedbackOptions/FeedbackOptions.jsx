@@ -1,23 +1,15 @@
-import { Component } from "react";
+import PropTypes from 'prop-types';
 
-export class FeedbackOptions extends Component { 
-    //const { good, neutral, bad } = options;
-    
-    // const shangeValue = ( good, neutral, bad ) => { 
-    //     //console.log('this props:', this.props);
-    //     console.log('opopop');
-    //     console.log(good);
-    // }
-    
-    render() { 
-        return (
-            <div>
-                <button>Good</button>
-                <button>Neutral</button>
-                <button>Bad</button>
-            </div>
-        )  
-    }
-             
-    
-}
+export const FeedbackOptions = ({ onGoodFeedback, onNeutralFeedback, onBadFeedback }) => (
+    <div>
+        <button onClick={onGoodFeedback}>Good</button>
+        <button onClick={onNeutralFeedback}>Neutral</button>
+        <button onClick={onBadFeedback}>Bad</button>
+    </div>
+);
+
+FeedbackOptions.propTypes = {
+    onGoodFeedback: PropTypes.func,
+    onNeutralFeedback: PropTypes.func,
+    onBadFeedback: PropTypes.func
+};
