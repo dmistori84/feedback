@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import styles from './Section.module.css';
 
 export const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (         
-    <ul>
+    <ul className={styles.list}>
         <li>Good: {good}</li>
         <li>Neutral: {neutral}</li>
         <li>Bad: {bad}</li>
