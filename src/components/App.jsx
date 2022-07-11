@@ -10,22 +10,10 @@ export class App extends Component  {
     neutral: 0,
     bad: 0
   }
-  
-  countGoodFeedback = () => { 
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }))
-  }
-
-  countNeutralFeedback = () => { 
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }))
-  }
-
-  countBadFeedback = () => { 
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
+   
+  countFeedback = (event) => { 
+    const currentBtn = event.target.name;
+    this.setState(prevState => ({ [currentBtn]: (prevState[currentBtn] + 1)
     }))
   }
 
@@ -38,22 +26,22 @@ export class App extends Component  {
   }
 
   render() { 
+    const { good, neutral, bad } = this.state;
     return (
       <div>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            onGoodFeedback={this.countGoodFeedback}
-            onNeutralFeedback={this.countNeutralFeedback}
-            onBadFeedback={this.countBadFeedback}
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.countFeedback}
         /> 
         </Section>
         <Section title="Statistics">
           <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
+            good={good}
+            neutral={neutral}
+            bad={bad}
             total={this.countTotalFeedback()}
-            positivePercentage={Number(this.countPositiveFeedbackPercentage()).toFixed(0)}
+            positivePercentage={this.countPositiveFeedbackPercentage().toFixed(0)}
         />
         </Section>  
       </div>    
