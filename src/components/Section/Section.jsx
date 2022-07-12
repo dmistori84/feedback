@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import styles from './Section.module.css';
 
 export const Section = ({ title, children }) => (
-    <section>
+    <section className={styles.indent}>
         <h3>{title}</h3>
         {children}
     </section>
